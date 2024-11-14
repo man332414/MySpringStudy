@@ -45,7 +45,7 @@
          <version>${org.springframework-version}</version>
       </dependency>
   </dependencies>
-  <build>                                                                                      
+  <build>
     <finalName>chap02</finalName>
     <plugins>
 		<plugin>
@@ -54,13 +54,13 @@
 			<configuration>
 				<additionalProjectnatures>
 					<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-					</additionalProjectnatures>
-					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-				</configuration>
+				</additionalProjectnatures>
+				<additionalBuildcommands>
+					<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                </additionalBuildcommands>
+                <downloadSources>true</downloadSources>
+                <downloadJavadocs>true</downloadJavadocs>
+			</configuration>
 		</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +76,7 @@
         </plugin>
         <plugin>
             <groupId>org.codehaus.mojo</groupId>
-       		 <artifactId>exec-maven-plugin</artifactId>
+       		<artifactId>exec-maven-plugin</artifactId>
             <version>1.2.1</version>
             <configuration>
                 <mainClass>org.test.int1.Main</mainClass>
