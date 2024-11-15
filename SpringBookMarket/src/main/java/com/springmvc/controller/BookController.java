@@ -1,28 +1,68 @@
 package com.springmvc.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.springmvc.DAO.service.BookService;
 import com.springmvc.DTO.Book;
-import com.springmvc.service.BookService;
 
 @Controller
+@RequestMapping("/books")
 public class BookController 
 {
 	@Autowired
 	private BookService bookService;
+//	 autowired 하려면 BookService 객체도 component scan이 되어야 한다.
 	
-	@RequestMapping(value = "/books", method =RequestMethod.GET)
+	@GetMapping
 	public String requestBookList(Model model)
 	{
-		System.out.println("Books. Controller");
+		System.out.println("BooksController");
 		List<Book> list = bookService.getAllBookList();
 		model.addAttribute("bookList", list);
+		return "books";
+	}
+	
+	@GetMapping("/all")
+	public ModelAndView requestAllbooks(Model model)
+	{
+		System.out.println("Books/all. Controller");
+		ModelAndView mav = new ModelAndView();
+		System.out.println("model and view object created");
+		List<Book> list = bookService.getAllBookList();
+		mav.addObject("bookList", list);
+		mav.setViewName("books");
+		return mav;
+	}
+	
+	@GetMapping("/{category}")
+	public String requestBooksByCategory(@PathVariable("category") String bookCategory, Model model)
+	{
+		System.out.println("Controller.requestBooksByCategroy() 함수에 들어왔고 내가 받은 파라미터는? : "+bookCategory);
+		List<Book> booksByCategory = bookService.getBookListByCategory(bookCategory);
+		System.out.println("모델을 다녀왔고 booksByCategory의 첫번째 인덱스의 이름은? : " + booksByCategory.get(0).getBookId());
+		model.addAttribute("bookList", booksByCategory);
+		return "books";
+	}
+	
+	@GetMapping("/filter/{bookFilter}")
+	public String requestBooksByFilter(
+			@MatrixVariable(pathVar = "bookFilter") 
+			Map<String, List<String>> bookFilter, Model model)
+	{
+		System.out.println("controller.requestBooksByfilter() 함수 입장 : " + bookFilter);
+		Set<Book> booksByfilter = bookService.getBookListByFilter(bookFilter);
+		model.addAttribute("bookList", booksByfilter);
 		return "books";
 	}
 }

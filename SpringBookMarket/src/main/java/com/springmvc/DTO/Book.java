@@ -13,7 +13,6 @@ public class Book
 	private String releaseDate;
 	private String condition;
 	
-	
 	public Book(String bookId, String name, int unitPrice) 
 	{
 		System.out.println("주문하신 DTO.Book 나왔습니다.");

@@ -11,7 +11,7 @@
 	<nav class = "navbar navbar-expand navbar-dark bg-dark">
 		<div class = "container">
 			<div class = "navbar-header">
-				<a href = "./home" class = "navbar-brand">Home</a>
+				<a href = "/SpringBookMarket/home" class = "navbar-brand">Home</a>
 			</div>
 		</div>
 	</nav>
@@ -19,7 +19,7 @@
 		<div class = "container">
 			<h1 class = "display-3">${greeting}</h1>
 		</div>
-	</div>
+	</div> 
 	
 	<div class = "contianer">
 		<div class = "text-center">

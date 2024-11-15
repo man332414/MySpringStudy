@@ -14,7 +14,7 @@
 	
 	<!-- 1. 핸들러매핑과 핸들러아답터를 자동으로 객체생성하고 
 		 2. @annotation을 사용할 수 있게 객체생성해줌 -->
-	<annotation-driven />
+	<annotation-driven enable-matrix-variables = "true" />
 
 	<!-- 
 		 css,image,js와 같은 공유되는 파일의 위치를 정하고 MVC외 처리를 실시함

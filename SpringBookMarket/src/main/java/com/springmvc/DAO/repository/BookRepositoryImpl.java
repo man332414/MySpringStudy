@@ -1,7 +1,10 @@
-package com.springmvc.repository;
+package com.springmvc.DAO.repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -56,8 +59,64 @@ public class BookRepositoryImpl implements BookRepository
 	@Override
 	public List<Book> getAllBookList() 
 	{
-		System.out.println("BookRepositoryImpl.getAllBookList() 함수 입장");
+		System.out.println("BookRepositoryImpl.getAllBookList() 함수 통과");
 		return listOfBooks;
+	}
+
+	@Override
+	public List<Book> getBookListByCategory(String category) 
+	{
+		System.out.println("BookRepository.getBookListByCategory()에 들어왔고 내가 받은 파라미터는? : "+ category);
+		List<Book> booksByCategory = new ArrayList<Book>();
+		for(int i = 0; i < listOfBooks.size(); i++)
+		{
+			Book book = listOfBooks.get(i);
+			if(category.equalsIgnoreCase(book.getCategory()))
+			{
+				booksByCategory.add(book);
+			}
+		}
+		
+		return booksByCategory;
+	}
+
+	@Override
+	public Set<Book> getBookListByFilter(Map<String, List<String>> filter) 
+	{
+		System.out.println("Repository.getBookListByFilter() 함수 입장 : " + filter);
+		Set<Book> booksByPublisher = new HashSet<Book>();
+		Set<Book> booksByCategory = new HashSet<Book>();
+		
+		Set<String> booksByFilter = filter.keySet();
+		
+		if(booksByFilter.contains("publisher")) 
+		{
+			for(int j = 0; j < filter.get("publisher").size(); j++)
+			{
+				String publisherName = filter.get("publisher").get(j);
+				for(int i = 0; i < listOfBooks.size(); i++)
+				{
+					Book book = listOfBooks.get(i);
+					
+					if(publisherName.equalsIgnoreCase(book.getPublisher()))
+					{
+						booksByPublisher.add(book);
+					}
+				}
+			}
+		}
+		
+		if(booksByFilter.contains("category"))
+		{
+			for(int i = 0; i < filter.get("category").size(); i++)
+			{
+				String category = filter.get("category").get(i);
+				List<Book> list = getBookListByCategory(category);
+				booksByCategory.addAll(list);
+			}
+		}
+		booksByCategory.retainAll(booksByPublisher);
+		return booksByCategory;
 	}
 	
 }
