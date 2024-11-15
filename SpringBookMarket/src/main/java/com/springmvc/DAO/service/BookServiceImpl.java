@@ -39,5 +39,13 @@ public class BookServiceImpl implements BookService
 		
 		return booksByFilter;
 	}
+
+	@Override
+	public Book getBookById(String bookId) 
+	{
+		System.out.println("Service.getBookById 입장 : " + bookId);
+		Book bookById = bookRepository.getBookById(bookId);
+		return bookById;
+	}
 	
 }
