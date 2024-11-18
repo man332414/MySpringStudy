@@ -13,7 +13,12 @@ public class Book
 	private String releaseDate;
 	private String condition;
 	
-	public Book(String bookId, String name, int unitPrice) 
+	public Book() 
+	{
+		System.out.println("주문하신 빈 DTO.Book 나왔습니다.");
+	}
+	
+	public Book(String bookId, String name, Integer unitPrice) 
 	{
 		System.out.println("주문하신 DTO.Book 나왔습니다.");
 		this.bookId = bookId;
@@ -37,7 +42,7 @@ public class Book
 	public int getUnitPrice() {
 		return unitPrice;
 	}
-	public void setUnitPrice(int unitPrice) {
+	public void setUnitPrice(Integer unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 	public String getAuthor() {
@@ -67,7 +72,7 @@ public class Book
 	public int getUnitsInStock() {
 		return unitsInStock;
 	}
-	public void setUnitsInStock(int i) {
+	public void setUnitsInStock(Integer i) {
 		this.unitsInStock = i;
 	}
 	public String getReleaseDate() {
