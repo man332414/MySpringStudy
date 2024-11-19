@@ -39,6 +39,11 @@
 		2. 뷰 리졸브 생성
 		3. com.springmvc.controller.HomeController : @Controller이 존재하면 만듦.
 	 -->
-	
+	 
+	 <beans:bean id="multipartResolver"
+	 			 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000"></beans:property>
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
+	 </beans:bean>
 	
 </beans:beans>

@@ -1,8 +1,11 @@
 package com.springmvc.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.DAO.service.BookService;
@@ -88,10 +92,29 @@ public class BookController
 	}
 	
 	@PostMapping("/add")
-	public String submitAddBookForm(@ModelAttribute("NewBook") Book book)
+	public String submitAddBookForm(@ModelAttribute("NewBook") Book book, HttpServletRequest req)
 	{
 		System.out.println("Controller.submitAddBookForm 입장 : " + book.getBookId());
+		MultipartFile bookImage = book.getBookImage();
+		System.out.println(bookImage);
+		String filename = book.getBookImage().getOriginalFilename();
+		String save = req.getServletContext().getRealPath("/resources/images");
+		
+		System.out.println(save);
+		
+		File f = new File(save+"/"+filename);
+		
+		try 
+		{
+			bookImage.transferTo(f);
+		}
+		catch (Exception e) 
+		{
+			throw new RuntimeException("도서 이미지 업로드가 실패했습니다. ");
+		}
+		
 		bookService.setNewBook(book);
+		
 		return "redirect:/books";
 	}
 	
@@ -104,6 +127,6 @@ public class BookController
 	@InitBinder
 	public void initBinder(WebDataBinder binder)
 	{
-		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "contion");
+		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "contion", "bookImage");
 	}
 }
