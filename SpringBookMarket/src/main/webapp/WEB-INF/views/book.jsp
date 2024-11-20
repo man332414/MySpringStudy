@@ -45,7 +45,7 @@
 				<br>
 				<p>
 					<a href = "#" class = "btn btn-primary" id = "order">도서주문 &raquo;</a>
-					<a href = "<c:url value = "/books"/>" class = "btn btn-secondary">도서목록 &raquo;</a>
+					<a href = "<c:url value = "/books/"/>" class = "btn btn-secondary">도서목록 &raquo;</a>
 				</p>
 			</div>
 		</div>

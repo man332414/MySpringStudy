@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.DAO.service.BookService;
 import com.springmvc.DTO.Book;
+import com.springmvc.exception.BookIdException;
+import com.springmvc.exception.CategoryException;
 
 @Controller
 @RequestMapping("/books")
@@ -59,8 +62,15 @@ public class BookController
 	{
 		System.out.println("Controller.requestBooksByCategroy() 함수에 들어왔고 내가 받은 파라미터는? : "+bookCategory);
 		List<Book> booksByCategory = bookService.getBookListByCategory(bookCategory);
+		
+		if(booksByCategory == null || booksByCategory.isEmpty())
+		{
+			throw new CategoryException();
+		}
 		System.out.println("모델을 다녀왔고 booksByCategory의 첫번째 인덱스의 이름은? : " + booksByCategory.get(0).getBookId());
 		model.addAttribute("bookList", booksByCategory);
+		
+		
 		return "books";
 	}
 	
@@ -128,5 +138,18 @@ public class BookController
 	public void initBinder(WebDataBinder binder)
 	{
 		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "contion", "bookImage");
+	}
+
+	@ExceptionHandler(value= {BookIdException.class})
+	public ModelAndView handleError(HttpServletRequest req, BookIdException exception)
+	{
+		System.out.println("BookController.handleError메서드 들어옴");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("invalidBookId", exception.getBookId());
+		System.out.println(exception.getBookId());
+		mav.addObject("exception", exception);
+		mav.addObject("url", req.getRequestURL() + "?" + req.getQueryString());
+		mav.setViewName("errorBook");
+		return mav;
 	}
 }
