@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ import com.springmvc.DAO.service.BookService;
 import com.springmvc.DTO.Book;
 import com.springmvc.exception.BookIdException;
 import com.springmvc.exception.CategoryException;
+import com.springmvc.validator.BookValidator;
+import com.springmvc.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/books")
@@ -35,6 +39,9 @@ public class BookController
 	@Autowired
 	private BookService bookService;
 //	 autowired 하려면 BookService 객체도 component scan이 되어야 한다.
+	
+	@Autowired
+	private BookValidator bookValidator;
 	
 	@GetMapping
 	public String requestBookList(Model model)
@@ -102,9 +109,15 @@ public class BookController
 	}
 	
 	@PostMapping("/add")
-	public String submitAddBookForm(@ModelAttribute("NewBook") Book book, HttpServletRequest req)
+	public String submitAddBookForm(@Valid @ModelAttribute("NewBook") Book book, BindingResult result, HttpServletRequest req)
 	{
-		System.out.println("Controller.submitAddBookForm 입장 : " + book.getBookId());
+		System.out.println("Controller.submitAddBookForm 입장 : "+result.hasErrors());
+		if(result.hasErrors())
+		{
+			System.out.println("if문 들어옴!");
+			return "addBook";
+		}
+		
 		MultipartFile bookImage = book.getBookImage();
 		System.out.println(bookImage);
 		String filename = book.getBookImage().getOriginalFilename();
@@ -137,6 +150,8 @@ public class BookController
 	@InitBinder
 	public void initBinder(WebDataBinder binder)
 	{
+		System.out.println("initBinder 입장");
+		binder.setValidator(bookValidator);
 		binder.setAllowedFields("bookId", "name", "unitPrice", "author", "description", "publisher", "category", "unitsInStock", "totalPages", "releaseDate", "contion", "bookImage");
 	}
 

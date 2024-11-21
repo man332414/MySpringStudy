@@ -26,7 +26,7 @@
 	
 	<div class="container">
 		<p>
-			<a href="books" class="btn btn-secondary">도서목록 &raquo;</a>
+			<a href="/SpringBookMarket/books/" class="btn btn-secondary">도서목록 &raquo;</a>
 		</p>
 	</div>
 	
