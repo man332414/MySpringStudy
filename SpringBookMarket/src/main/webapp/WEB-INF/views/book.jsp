@@ -1,9 +1,12 @@
+<%@page import="com.springmvc.DTO.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
-<link href = "<c:url value = "/resources/css/bootstrap.min.css"/>" rel = stylesheet>
+<link href = "/SpringBookMarket/resources/css/bootstrap.min.css" rel = "stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/controllers.js"></script>
 	<title>도서 상세정보</title>
 </head>
 <body>
@@ -44,9 +47,14 @@
 				<h4>${book.unitPrice}원</h4>
 				<br>
 				<p>
-					<a href = "#" class = "btn btn-primary" id = "order">도서주문 &raquo;</a>
+				<form:form name="addForm" method="post">
+					<input type="hidden" name="_method" value="put" />
+					<% Book book = (Book)request.getAttribute("book");
+						System.out.println(book.getBookId());%>
+					<p><a href = "javascript:addToCart('../cart/add/${book.bookId}')" class = "btn btn-primary" id = "order">도서주문 &raquo;</a></p>
 					<a href = "<c:url value = "/books/"/>" class = "btn btn-secondary">도서목록 &raquo;</a>
-				</p>
+					<a href = "<c:url value = "/cart/"/>" class = "btn btn-warning">장바구니 &raquo;</a>
+				</form:form>
 			</div>
 		</div>
 		<footer>
