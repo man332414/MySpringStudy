@@ -1,5 +1,7 @@
 package com.springmvc.DTO;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.springmvc.validator.BookId;
 
-public class Book 
+@SuppressWarnings("serial")
+public class Book implements Serializable
 {
 	@BookId
 	@Pattern(regexp="ISBN[1-9]+", message="{Pattern.NewBook.bookId}")
@@ -25,7 +28,7 @@ public class Book
 	private String description;
 	private String publisher;
 	private String category;
-	private int unitsInStock;
+	private long unitsInStock;
 	private String releaseDate;
 	private String condition;
 	private MultipartFile bookImage;
@@ -85,11 +88,11 @@ public class Book
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getUnitsInStock() {
+	public long getUnitsInStock() {
 		return unitsInStock;
 	}
-	public void setUnitsInStock(Integer i) {
-		this.unitsInStock = i;
+	public void setUnitsInStock(long l) {
+		this.unitsInStock = l;
 	}
 	public String getReleaseDate() {
 		return releaseDate;

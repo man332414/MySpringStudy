@@ -1,6 +1,9 @@
 package com.springmvc.DTO;
 
-public class CartItem
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class CartItem implements Serializable
 {
 	private Book book;
 	private int quantity;

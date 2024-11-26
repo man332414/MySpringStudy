@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.springmvc.DAO.repository.CartRepository;
 import com.springmvc.DTO.Cart;
+import com.springmvc.exception.CartException;
 
 @Service
 public class CartServiceImpl implements CartService 
@@ -36,6 +37,15 @@ public class CartServiceImpl implements CartService
 	{
 		cartRepository.delete(cartId);		
 	}
-
+	
+	public Cart validateCart(String cartId)
+	{
+		Cart cart = cartRepository.read(cartId);
+		if(cart == null || cart.getCartItems().size() == 0)
+		{
+			throw new CartException(cartId);
+		}
+		return cart;
+	}
 	
 }
