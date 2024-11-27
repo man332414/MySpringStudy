@@ -8,7 +8,7 @@
 	<title>Welcome</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
+<%-- 	<nav class = "navbar navbar-expand navbar-dark bg-dark">
 		<div class = "container">
 			<div class = "navbar-header">
 				<a href = "/SpringBookMarket/home" class = "navbar-brand">Home</a>
@@ -19,14 +19,14 @@
 		<div class = "container">
 			<h1 class = "display-3">${greeting}</h1>
 		</div>
-	</div> 
+	</div> --%>
+		
+<!-- 	<div class = "contianer"> -->
+<!-- 		<div class = "text-center"> -->
+<%-- 				<h3>${strapline}</h3>				 --%>
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
-	<div class = "contianer">
-		<div class = "text-center">
-				<h3>${strapline}</h3>				
-		</div>
-	</div>
-	
-	<footer class = "container">&#169; BookMarket</footer>
+<!-- 	<footer class = "container">&#169; BookMarket</footer> -->
 </body>
 </html>

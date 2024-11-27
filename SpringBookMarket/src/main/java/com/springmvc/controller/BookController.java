@@ -130,6 +130,7 @@ public class BookController
 		try 
 		{
 			bookImage.transferTo(f);
+			book.setFileName(filename);
 		}
 		catch (Exception e) 
 		{

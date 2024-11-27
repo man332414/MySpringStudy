@@ -10,18 +10,18 @@
 <title>Cart</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
-		<div class = "container">
-			<div class = "navbar-header">
-				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a>
-			</div>
-		</div>
-	</nav>
-	<div class = "jumbotron">
-		<div class = "container">
-			<h1 class = "display-3">장바구니</h1>
-		</div>
-	</div>
+<!-- 	<nav class = "navbar navbar-expand navbar-dark bg-dark"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<div class = "navbar-header"> -->
+<!-- 				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav> -->
+<!-- 	<div class = "jumbotron"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<h1 class = "display-3">장바구니</h1> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div class = "container">
 		<div>
 			<form:form name="clearForm" method="post">
@@ -62,9 +62,9 @@
 			</table>
 			<a href="/SpringBookMarket/books/" class="btn btn-secondary">&laquo; 쇼핑계속하기</a>
 		</div>
-		<footer>
-			<p>&#169; BookMarket</p>
-		</footer>
+<!-- 		<footer> -->
+<!-- 			<p>&#169; BookMarket</p> -->
+<!-- 		</footer> -->
 		
 	</div>
 </body>

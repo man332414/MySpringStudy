@@ -10,18 +10,18 @@
 	<title>도서 상세정보</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
-		<div class = "container">
-			<div class = "navbar-header">
-				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a>
-			</div>
-		</div>
-	</nav>		
-	<div class = "jumbotron">
-		<div class = "container">
-			<h1 class = "display-3">도서 목록</h1>
-		</div>
-	</div>
+<!-- 	<nav class = "navbar navbar-expand navbar-dark bg-dark"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<div class = "navbar-header"> -->
+<!-- 				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav>		 -->
+<!-- 	<div class = "jumbotron"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<h1 class = "display-3">도서 목록</h1> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div class = "container">
 		<div class = "row">
 			<div class = "col-md-4">
@@ -57,9 +57,9 @@
 				</form:form>
 			</div>
 		</div>
-		<footer>
-			<p>&#169; BookMarket</p>
-		</footer>
+<!-- 		<footer> -->
+<!-- 			<p>&#169; BookMarket</p> -->
+<!-- 		</footer> -->
 	</div>
 </body>
 </html>

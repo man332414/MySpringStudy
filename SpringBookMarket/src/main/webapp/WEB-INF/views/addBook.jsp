@@ -10,25 +10,25 @@
 <title>도서 등록</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand navbar-dark bg-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/SpringBookMarket/home">Home</a>
-			</div>
-		</div>
-	</nav>		
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3"> <!-- 도서등록 -->
-				<spring:message code="addBook.form.title.label"/>
-			</h1>
-		</div>
-	</div>
+<!-- 	<nav class="navbar navbar-expand navbar-dark bg-dark"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="navbar-header"> -->
+<!-- 				<a class="navbar-brand" href="/SpringBookMarket/home">Home</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav>		 -->
+<!-- 	<div class="jumbotron"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<h1 class="display-3"> 도서등록 -->
+<%-- 				<spring:message code="addBook.form.title.label"/> --%>
+<!-- 			</h1> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	
 	<div class="container">
 		<div class="float-right">
 			<form:form action="${pageContext.request.contextPath}/logout" method="post">
-				<input type="submit" class = "btn btn-sm btn-success" value="logout">
+				<input type="submit" class = "btn btn-success" value="logout"> <!-- btn-sm  -->
 			</form:form>
 		</div>
 		
@@ -149,9 +149,9 @@
 		</fieldset>
 		</form:form>
 		<hr>
-		<footer>
-			<p>&#169; BookMarket</p>
-		</footer>
+<!-- 		<footer> -->
+<!-- 			<p>&#169; BookMarket</p> -->
+<!-- 		</footer> -->
 	</div>
 </body>
 </html>

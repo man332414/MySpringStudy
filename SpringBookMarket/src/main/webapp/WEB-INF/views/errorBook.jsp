@@ -8,13 +8,13 @@
 <title>예외 처리</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
-		<div class = "container">
-			<div class = "navbar-header">
-				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a>
-			</div>
-		</div>
-	</nav>		
+<!-- 	<nav class = "navbar navbar-expand navbar-dark bg-dark"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<div class = "navbar-header"> -->
+<!-- 				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav>		 -->
 	<div class = "jumbotron">
 		<div class = "container">
 			<h2 class = "alert alert-danger">해당 도서가 존재하지 않습니다.<br>

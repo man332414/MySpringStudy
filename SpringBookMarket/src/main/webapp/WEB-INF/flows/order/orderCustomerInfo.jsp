@@ -8,18 +8,18 @@
 <title>Customer</title>
 </head>
 <body>
-	<nav class = "navbar navbar-expand navbar-dark bg-dark">
-		<div class = "container">
-			<div class = "navbar-header">
-				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a>
-			</div>
-		</div>
-	</nav>
-	<div class = "jumbotron">
-		<div class = "container">
-			<h1 class = "display-3">고객 정보</h1>
-		</div>
-	</div>
+<!-- 	<nav class = "navbar navbar-expand navbar-dark bg-dark"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<div class = "navbar-header"> -->
+<!-- 				<a class = "navbar-brand" href = "/SpringBookMarket/home">Home</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav> -->
+<!-- 	<div class = "jumbotron"> -->
+<!-- 		<div class = "container"> -->
+<!-- 			<h1 class = "display-3">고객 정보</h1> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<div class="container">
 		<form:form modelAttribute="order.customer" class="form-horizontal">
