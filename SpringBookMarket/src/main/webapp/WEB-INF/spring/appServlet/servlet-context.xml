@@ -85,8 +85,7 @@
 		<beans:property name="viewResolvers" ref="tilesViewResolver" />
 	</beans:bean>
 	
-	<webflow:flow-registry id="flowRegistry">
-	                           <!-- flow-builder-service="flowBuilderService" -->
+	<webflow:flow-registry id="flowRegistry"> <!-- flow-builder-service="flowBuilderService" -->
 		<webflow:flow-location path="/WEB-INF/flows/order/order-flow.xml" id="order" />
 	</webflow:flow-registry>
 	

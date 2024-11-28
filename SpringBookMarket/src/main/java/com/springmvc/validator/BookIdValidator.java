@@ -31,7 +31,7 @@ public class BookIdValidator implements ConstraintValidator<BookId, String>
 		}
 		catch(Exception e)
 		{
-			return false;
+			return true;
 		}
 		System.out.println(book);
 		

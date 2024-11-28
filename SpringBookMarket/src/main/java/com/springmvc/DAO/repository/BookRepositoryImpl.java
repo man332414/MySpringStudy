@@ -209,14 +209,36 @@ public class BookRepositoryImpl implements BookRepository
 	public void setNewBook(Book book) 
 	{
 		System.out.println("------------------------------------------");
-		System.out.println("bookRepository.setNewbook() 입장 : " + book.getBookId());
+		System.out.println("bookRepository.setNewbook() 입장 : " + book.getCondition());
 
-		String sql = "insert into book (b_bookId, b_name, b_unitPrice, b_author, b_description, b_publisher, b_unitsInStock, b_releaseDate, b_condition, b_fileName)" + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into book (b_bookId, b_name, b_unitPrice, b_author, b_description, b_publisher, b_category, b_unitsInStock, b_releaseDate, b_condition, b_fileName)" + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		template.update(sql, book.getBookId(), book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getFileName());
 //		listOfBooks.add(book);
 		
 		System.out.println("bookRepository.setNewbook() 퇴장");
 		System.out.println("------------------------------------------");
+	}
+
+	@Override
+	public void setUpdateBook(Book book) 
+	{
+		if(book.getFileName() != null)
+		{
+			String SQL = "update book set b_name=?, b_unitPrice=?, b_author=?, b_description=?, b_publisher=?, b_category=?, b_unitsInStock=?, b_releaseDate=?, b_condition=?, b_fileName=? where b_bookId=?";
+			template.update(SQL, book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getFileName(), book.getBookId());
+		}
+		else if(book.getFileName() == null)
+		{
+			String SQL = "update book set b_name=?, b_unitPrice=?, b_author=?, b_description=?, b_publisher=?, b_category=?, b_unitsInStock=?, b_releaseDate=?, b_condition=? where b_bookId=?";
+			template.update(SQL, book.getName(), book.getUnitPrice(), book.getAuthor(), book.getDescription(), book.getPublisher(), book.getCategory(), book.getUnitsInStock(), book.getReleaseDate(), book.getCondition(), book.getBookId());
+		}
+	}
+
+	@Override
+	public void setDeleteBook(String bookId) 
+	{
+		String sql = "delete from book where b_bookId = ?";
+		this.template.update(sql, bookId);
 	}
 	
 }

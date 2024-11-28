@@ -13,7 +13,7 @@
 	<appender name="monitor" class="org.apache.log4j.RollingFileAppender">
 		<param name="append" value="false"/>
 		<param name="maxFileSize" value="10KB"/>
-		<param name="maxVackupIndex" value="5"/>
+		<param name="maxBackupIndex" value="5"/>
 		<param name="file" value="c:/logs/monitor.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
@@ -28,7 +28,7 @@
 	<appender name="audit" class="org.apache.log4j.RollingFileAppender">
 		<param name="append" value="false"/>
 		<param name="maxFileSize" value="10KB"/>
-		<param name="maxVackupIndex" value="5"/>
+		<param name="maxBackupIndex" value="5"/>
 		<param name="file" value="c:/logs/audit.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />

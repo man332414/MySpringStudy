@@ -1,6 +1,7 @@
 package com.springmvc.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -111,10 +113,11 @@ public class BookController
 	@PostMapping("/add")
 	public String submitAddBookForm(@Valid @ModelAttribute("NewBook") Book book, BindingResult result, HttpServletRequest req)
 	{
-		System.out.println("Controller.submitAddBookForm 입장 : "+result.hasErrors());
+		System.out.println("Controller.submitAddBookForm 입장 : "+book.getBookId());
 		if(result.hasErrors())
 		{
 			System.out.println("if문 들어옴!");
+
 			return "addBook";
 		}
 		
@@ -123,7 +126,7 @@ public class BookController
 		String filename = book.getBookImage().getOriginalFilename();
 		String save = req.getServletContext().getRealPath("/resources/images");
 		
-		System.out.println(save);
+		System.out.println(save+"/"+filename);
 		
 		File f = new File(save+"/"+filename);
 		
@@ -167,5 +170,49 @@ public class BookController
 		mav.addObject("url", req.getRequestURL() + "?" + req.getQueryString());
 		mav.setViewName("errorBook");
 		return mav;
+	}
+	
+	@GetMapping("/update")
+	public String getUpdateBookForm(@ModelAttribute("updateBook") Book book, @RequestParam("id") String bookId, Model model)
+	{
+		Book bookById = bookService.getBookById(bookId);
+		model.addAttribute("book", bookById);
+		return "updateForm";
+	}
+	
+	@PostMapping("/update")
+	public String submitUpdateBookForm(@ModelAttribute("updateBook") Book book, HttpServletRequest req)
+	{
+		MultipartFile bookImage = book.getBookImage();
+		
+		String rootDirectory = req.getServletContext().getRealPath("/resources/images");
+		
+		if(bookImage != null && !bookImage.isEmpty()) 
+		{
+			try 
+			{
+				String fname = bookImage.getOriginalFilename();
+				bookImage.transferTo(new File(rootDirectory+"/"+fname));
+				book.setFileName(fname);
+			}
+			
+			catch (Exception e) 
+			{
+				// TODO Auto-generated catch block
+				throw new RuntimeException("Book Image savin failed", e);
+			}
+			
+		}
+		bookService.setUpdateBook(book);
+		
+		return "redirect:/books";
+	}
+	
+	@RequestMapping(value="/delete")
+	public String getDeleteBookForm(Model model, @RequestParam("id") String bookId)
+	{
+		System.out.println("bookcontorller.getDeleteBookForm");
+		bookService.setDeleteBook(bookId);
+		return "redirect:/books";
 	}
 }

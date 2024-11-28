@@ -25,14 +25,14 @@
 		<div class = "row" align = "center">
 			<c:forEach items = "${bookList}" var = "book">
 				<div class = "col-md-4">
-					<c:choose>
-						<c:when test="${book.getBookImage() == null}">
-							<img src="/SpringBookMarket/resources/images/${book.getBookId()}.png" style="width:60%" />
-						</c:when>
-						<c:otherwise>
-							<img src="/SpringBookMarket/resources/images/${book.getBookImage().getOriginalFilename()}" style="width:60%" />
-						</c:otherwise>
-					</c:choose>
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${book.getFileName() == null}"> --%>
+<%-- 							<img src="/SpringBookMarket/resources/images/${book.getBookId()}.png" style="width:60%"  alt="${book.getBookId()}.png" /> --%>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+							<img src="/SpringBookMarket/resources/images/${book.getFileName()}" style="width:60%" alt="${book.getFileName()}" />
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
 					<h3>${book.name}</h3>
 					<p>${book.author}</p>
 						<br>${book.publisher} | ${book.releaseDate}
@@ -42,7 +42,6 @@
 				</div>
 			</c:forEach>
 		</div>
-		<hr>
 <!-- 		<footer> -->
 <!-- 			<p>&#169; BookMarket</p> -->
 <!-- 		</footer> -->
