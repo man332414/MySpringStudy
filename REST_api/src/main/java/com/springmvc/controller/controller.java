@@ -19,13 +19,19 @@ import org.json.JSONTokener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller("/REST_api")
+@Controller("/REST_api/")
 public class controller 
 {
 	@GetMapping
 	public String home()
 	{
-		return "home";
+		return "index";
+	}
+	
+	@GetMapping("/calendar")
+	public String calendar()
+	{
+		return "calendar";
 	}
 	
 	@GetMapping("/project05")
